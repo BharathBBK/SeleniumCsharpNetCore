@@ -18,6 +18,8 @@ namespace SeleniumCsharpNetCore
             Thread.Sleep(2000);
             Driver.FindElement(By.XPath($"//div[@id='{ctrlname}-dropmenu']//li[text()='{valuename}']")).Click();
 
+            Console.WriteLine("ComboCtrl Executed Successfully");
+
         }
 
     }
