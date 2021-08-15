@@ -24,22 +24,25 @@ namespace SeleniumCsharpNetCore
         {
             
             Driver.Navigate().GoToUrl("https://demowf.aspnetawesome.com/");
-
-            var veggie = "Tomato";
-            Driver.FindElement(By.XPath("//input[@id='ContentPlaceHolder1_Meal']")).SendKeys(veggie);
+        
+            CustomControl.Entertext(Driver.FindElement(By.XPath("//input[@id='ContentPlaceHolder1_Meal']")), "Tomato");
             Thread.Sleep(2000);
-            Driver.FindElement(By.XPath("//div[@id='ContentPlaceHolder1_Meal-dropmenu']//ul/li")).Click();
+            CustomControl.Clickmethod(Driver.FindElement(By.XPath("//div[@id='ContentPlaceHolder1_Meal-dropmenu']//ul/li")));
+            CustomControl.Clickmethod(Driver.FindElement(By.XPath("//div[@class='o-chk ']/following-sibling::div[text()='Celery']")));
+            CustomControl.comboboxctrl("ContentPlaceHolder1_AllMealsCombo", "Almond");
 
-            Driver.FindElement(By.XPath("//div[@class='o-chk ']/following-sibling::div[text()='Celery']")).Click();
+            //Driver.FindElement(By.XPath("//div[@class='o-chk ']/following-sibling::div[text()='Celery']")).Click();
 
             //string comboctrlname = "ContentPlaceHolder1_AllMealsCombo";
 
             //CustomControl ctrl = new CustomControl();
-            CustomControl.comboboxctrl("ContentPlaceHolder1_AllMealsCombo", "Almond");
+
+            CustomControl.selectByText(Driver.FindElement(By.Id("ContentPlaceHolder1_Add1-awed")), "Lettuce");
+
 
             Console.WriteLine("Execution");
 
-            Driver.Quit();
+            //Driver.Quit();
             Assert.Pass();
         }
     }
