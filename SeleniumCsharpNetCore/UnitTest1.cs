@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using SeleniumCsharpNetCore.Pages;
 using System;
 using System.Threading;
 
@@ -44,6 +45,21 @@ namespace SeleniumCsharpNetCore
 
             //Driver.Quit();
             Assert.Pass();
+        }
+
+        [Test]
+        public void logintest() {
+
+            Driver.Navigate().GoToUrl("http://eaapp.somee.com/");
+
+            HomePage Hpage = new HomePage();
+            Loginpage Lpage = new Loginpage();
+
+            Hpage.clicklogin();
+            Lpage.Enterusername("admin", "password");
+            Lpage.Submitbtn();
+            Assert.That(Hpage.LogOff, Is.True, "Log Off button is displayed");
+        
         }
     }
 }
