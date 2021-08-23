@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -7,13 +8,19 @@ using System.Threading;
 
 namespace SeleniumCsharpNetCore
 {
-    public class CustomControl : DriverHelper
+    public class CustomControl
     {
+
+        public static IWebDriver Driver = new ChromeDriver();
+
+
 
         public static void comboboxctrl(String ctrlname, String valuename)
         {
             IWebElement Combocontrol = Driver.FindElement(By.XPath($"//input[@id='{ctrlname}-awed']"));
 
+
+            
             Combocontrol.Clear();
             Combocontrol.SendKeys(valuename);
             Thread.Sleep(2000);
@@ -50,6 +57,10 @@ namespace SeleniumCsharpNetCore
 
         }
 
-
+        public override bool Equals(object obj)
+        {
+            return obj is CustomControl control &&
+                   EqualityComparer<IWebDriver>.Default.Equals(_Driver, control._Driver);
+        }
     }
 }

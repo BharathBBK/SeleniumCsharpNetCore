@@ -5,13 +5,20 @@ using System.Text;
 
 namespace SeleniumCsharpNetCore.Pages
 {
-    class Loginpage : DriverHelper
+    class Loginpage
     {
+        private IWebDriver _Driver;
+        public Loginpage(IWebDriver driver)
+        {
+            _Driver = driver;
+        }
 
-        IWebElement UserName => Driver.FindElement(By.Id("UserName"));
-        IWebElement Password => Driver.FindElement(By.Id("Password"));
+        public IWebDriver Driver { get; }
 
-        IWebElement loginbutton => Driver.FindElement(By.XPath("//input[@type='submit']"));
+        IWebElement UserName => _Driver.FindElement(By.Id("UserName"));
+        IWebElement Password => _Driver.FindElement(By.Id("Password"));
+
+        IWebElement loginbutton => _Driver.FindElement(By.XPath("//input[@type='submit']"));
 
         public void Enterusername(string username, string password) {
 
